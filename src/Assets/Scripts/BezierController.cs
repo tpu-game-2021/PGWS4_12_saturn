@@ -24,13 +24,22 @@ public class BezierController : MonoBehaviour
         }
         float t = count / 5.0f;
 
-        this.transform.position =  Bezier(
+        this.transform.position = Bezier(
             p0.transform.position,
             p1.transform.position,
             p2.transform.position,
             p3.transform.position,
             t
         );
+
+        this.transform.LookAt(Bezier(
+            p0.transform.position,
+            p1.transform.position,
+            p2.transform.position,
+            p3.transform.position,
+            t+0.01f// ちょっと先
+        ));
+        this.transform.Rotate(90,0,0);
     }
 
     private Vector3 Bezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
