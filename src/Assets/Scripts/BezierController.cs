@@ -18,12 +18,15 @@ public class BezierController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 5秒でリセット・
         count += Time.deltaTime;
         if(5.0f < count){
             count = 0.0f;
         }
+        // ５秒かけて0-1に変わって目的に飛んでいく
         float t = count / 5.0f;
 
+        // ベジェ曲線を使って位置を指定
         this.transform.position = Bezier(
             p0.transform.position,
             p1.transform.position,
@@ -32,6 +35,7 @@ public class BezierController : MonoBehaviour
             t
         );
 
+        // 飛んでいく方向にオブジェクトを向ける
         this.transform.LookAt(Bezier(
             p0.transform.position,
             p1.transform.position,
@@ -39,6 +43,7 @@ public class BezierController : MonoBehaviour
             p3.transform.position,
             t+0.01f// ちょっと先
         ));
+        // カプセル形状と飛んでいく方向が９０度違っていたので補正
         this.transform.Rotate(90,0,0);
     }
 
